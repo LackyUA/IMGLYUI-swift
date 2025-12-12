@@ -45,7 +45,12 @@ struct ConfigureableEditor: ViewModifier {
     )
     let config = EngineConfiguration(settings: settings, callbacks: callbacks)
     content
-      .modifier(InteractableEditor(config: config, behavior: behavior, dismiss: dismiss, assetLibrary: assetLibrary))
+      .modifier(InteractableEditor(
+        config: config,
+        behavior: behavior,
+        dismiss: dismiss,
+        assetLibrary: assetLibrary,
+      ))
   }
 }
 
@@ -56,7 +61,7 @@ private struct InteractableEditor: ViewModifier {
     config: EngineConfiguration,
     behavior: InteractorBehavior,
     dismiss: DismissAction,
-    assetLibrary: any AssetLibrary
+    assetLibrary: any AssetLibrary,
   ) {
     _interactor = .init(wrappedValue: .init(
       config: config,

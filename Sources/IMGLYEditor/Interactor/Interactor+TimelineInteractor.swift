@@ -1156,8 +1156,6 @@ extension Interactor: TimelineInteractor {
     }
   }
 
-  // MARK: - Photo Roll
-
   func openSystemCamera(_ assetSourceIDs: [MediaType: String]) {
     pause()
     uploadAssetSourceIDs = assetSourceIDs
