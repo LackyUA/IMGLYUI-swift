@@ -219,25 +219,25 @@ private extension Engine {
         appendTo track: DesignBlockID,
     ) throws {
         let rect = video.rect
-        let rootBlock = try block.create(.graphic)
+        let videoBlock = try block.create(.graphic)
         let rectShapeBlock = try block.createShape(.rect)
 
-        try block.setShape(rootBlock, shape: rectShapeBlock)
-        try block.appendChild(to: track, child: rootBlock)
-        try block.setFrame(rootBlock, value: rect)
-        try block.setTimeOffset(rootBlock, offset: offset)
+        try block.setShape(videoBlock, shape: rectShapeBlock)
+        try block.appendChild(to: track, child: videoBlock)
+        try block.setFrame(videoBlock, value: rect)
+        try block.setTimeOffset(videoBlock, offset: offset)
 
         let fillBlock = try block.createFill(.video)
 
         try block.set(fillBlock, property: .key(.fillVideoFileURI), value: video.url)
-        try block.setFill(rootBlock, fill: fillBlock)
+        try block.setFill(videoBlock, fill: fillBlock)
 
         if
             let isTrimSupported = try? block.supportsTrim(fillBlock), isTrimSupported,
-            let isDurationSupported = try? block.supportsDuration(rootBlock), isDurationSupported
+            let isDurationSupported = try? block.supportsDuration(videoBlock), isDurationSupported
         {
             try block.setTrimLength(fillBlock, length: duration)
-            try block.setDuration(rootBlock, duration: duration)
+            try block.setDuration(videoBlock, duration: duration)
         }
     }
 }
